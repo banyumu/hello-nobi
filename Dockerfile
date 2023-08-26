@@ -6,5 +6,5 @@ COPY app.js /app
 
 EXPOSE 3000
 
-ENTRYPOINT["node", "app.js"]
+ENTRYPOINT ["node", "app.js"]
 
