@@ -1,9 +1,12 @@
 version: "3.9"
 
 services:
-  nnginx-proxy:
+  nginx-proxy:
     image: 127.0.0.1:5000/nginx-proxy
     build: .
+    hostname: nginx-proxy
+    networks:
+      - nobi-net
     ports:
       - "80:80"
     deploy:
@@ -21,3 +24,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+networks:
+  nobi-net:
+    external: true

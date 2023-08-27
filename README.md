@@ -16,7 +16,7 @@ Deploy simple "hello-world" nodejs apps on docker swarm on AWS EC2 Instance (t2.
 
 - Init docker swarm on instance-a
 ```bash
-  docker swarm init
+  docker swarm init --advertise-addr 172.31.44.220
 ```
 - Join swarm cluster on instance-b
 ```bash
@@ -34,7 +34,12 @@ Deploy simple "hello-world" nodejs apps on docker swarm on AWS EC2 Instance (t2.
 
 - Deploy local registry service on instance-a
 ```bash
-  docker service create --name nobi-registry --publish published=5000,target=5000 registry
+  docker service create --name nobi-registry --publish published=5000,target=5000 registry:2
+```
+
+- Create overlay network for service connection
+```bash
+  docker network create -d overlay --attachable nobi-net
 ```
 
 - Build docker image for nodejs on instance-a

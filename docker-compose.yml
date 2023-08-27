@@ -2,9 +2,16 @@ version: "3.9"
  
 services:
   nodejs:
-    image: 127.0.0.1:5000/hello-nobi:v1
+    image: 127.0.0.1:5000/hello-nobi:v2
     build: .
+    hostname: app
+    networks:
+      - nobi-net
     ports:
       - "3001-3003:3000"
     deploy:
       replicas: 3
+networks:
+  nobi-net:
+    external:
+      name: nobi-net
