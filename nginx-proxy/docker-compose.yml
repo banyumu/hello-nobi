@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  nnginx-proxy:
+    image: 127.0.0.1:5000/nginx-proxy
+    build: .
+    ports:
+      - "80:80"
+    deploy:
+      update_config:
+        order: start-first
+        parallelism: 1
+        failure_action: rollback
+        delay: 10s
+      rollback_config:
+        parallelism: 0
+        order: stop-first
+    healthcheck:
+      test: ["CMD", "service", "nginx", "status"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
