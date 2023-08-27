@@ -67,7 +67,7 @@ Deploy simple "hello-world" nodejs apps on docker swarm on AWS EC2 Instance (t2.
   docker image push 127.0.0.1:5000/nginx-proxy
 ```
 
-- Deploy nodejs app on instance-a
+- Deploy nginx reverse-proxy on instance-b
 ```bash
   docker stack deploy --compose-file docker-compose.yml nginx-proxy
 ```
