@@ -55,12 +55,12 @@ jobs:
       #      docker-compose up -d  # Start the containers
       #    EOF
       
-    - name: SSH into Server
-      uses: appleboy/ssh-action@v0.1.6
-      with:
-        host: ${{ secrets.SERVER_HOST }}
-        username: ${{ secrets.SERVER_USERNAME }}
-        key: ${{ secrets.SERVER_SSH_KEY }}
-        script: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_HOST }}  ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
-          docker compose -f /home/h2o/docker-compose.yml up -d
+      - name: SSH into Server
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            ssh -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_HOST }}  ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }}
+            docker compose -f /home/h2o/docker-compose.yml up -d
