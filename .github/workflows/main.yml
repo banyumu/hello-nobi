@@ -45,4 +45,4 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          docker compose up -d --no-deps
+          docker compose -f /home/h2o/docker-compose.yml up -d 
