@@ -1,8 +1,6 @@
-version: "3.9"
- 
 services:
   nodejs:
-    image: 127.0.0.1:5000/hello-nobi:v2
+    image: banyumu/action:latest
     build: .
     hostname: app
     networks:
