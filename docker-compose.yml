@@ -2,9 +2,9 @@ services:
   nodejs:
     image: banyumu/action:latest
     build: .
-    hostname: app
-    networks:
-      - nobi-net
+    hostname: node-app
+      #networks:
+      #- nobi-net
     ports:
       - "3001-3003:3000"
     deploy:
