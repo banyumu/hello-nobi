@@ -50,7 +50,7 @@ jobs:
       # Copy docker-compose.yml and pull the latest image to your VM
       - name: Deploy to VM
         run: |
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_SSH_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} << 'EOF'
             docker-compose pull  # Pull the latest images
             docker-compose up -d  # Start the containers
           EOF
