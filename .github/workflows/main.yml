@@ -29,8 +29,11 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
+    - name: Push Image
+      run: docker push banyumu/action:latest
+
   deploy:
-    needs: build
+    needs: push
     runs-on: self-hosted
     #runs-on: ubuntu-latest
 
