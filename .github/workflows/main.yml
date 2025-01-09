@@ -38,10 +38,22 @@ jobs:
     #runs-on: ubuntu-latest
 
     steps:
-      - name: Run docker-compose
-        uses: hoverkraft-tech/compose-action@v2.0.1
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Set up SSH key for deployment
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          compose-file: "./docker-compose.yml"
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Copy docker-compose.yml and pull the latest image to your VM
+      - name: Deploy to VM
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ${{ secrets.SERVER_USERNAME }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            docker-compose pull  # Pull the latest images
+            docker-compose up -d  # Start the containers
+          EOF
       #- name: SSH into Server
       #uses: appleboy/ssh-action@v0.1.6
       #with:
