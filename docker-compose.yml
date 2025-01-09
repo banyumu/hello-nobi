@@ -9,7 +9,7 @@ services:
       - "3001-3003:3000"
     deploy:
       replicas: 3
-networks:
-  nobi-net:
-    external:
-      name: nobi-net
+        #networks:
+        #nobi-net:
+        #external:
+        # name: nobi-net
