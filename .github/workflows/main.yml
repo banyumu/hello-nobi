@@ -41,9 +41,11 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Docker-Compose Remote Deployment
-        uses: masterjanic/docker-compose-ssh-deployment@master
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          ssh_host: your-remote-server.com
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          ssh_user: ${{ secrets.SSH_USER }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: linuxserver.io
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          script: docker compose -f ~/docker-compose.yml up -d
