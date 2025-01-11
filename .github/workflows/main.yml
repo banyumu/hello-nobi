@@ -43,9 +43,9 @@ jobs:
 
       - name: remote docker-compose up via ssh
         uses: appleboy/ssh-action@v0.1.5
-        env:
-          APPTOKEN: ${‎{ secrets.GITHUB_TOKEN }‎}
-          USERNAME: ${‎{ secrets.DEPLOY_USERNAME }‎}
+        #env:
+        #  APPTOKEN: ${‎{ secrets.GITHUB_TOKEN }‎}
+        #  USERNAME: ${‎{ secrets.DEPLOY_USERNAME }‎}
         with:
           host: ${‎{ secrets.DEPLOY_HOST }‎}
           username: ${‎{ secrets.DEPLOY_USERNAME }‎}
@@ -53,5 +53,4 @@ jobs:
           port: 22
           envs: APPTOKEN,USERNAME
           script: |
-            cd ~
-            docker compose -f docker-compose.yml
+            cd ~ && docker compose -f docker-compose.yml
